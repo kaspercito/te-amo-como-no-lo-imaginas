@@ -59,4 +59,5 @@ function ocultarTitulo() {
   }, 3000);
 }
 
-setTimeout(ocultarTitulo, 216000);
+// Aumentado a 30 segundos para leer el mensaje completo antes de fadeOut
+setTimeout(ocultarTitulo, 30000);
