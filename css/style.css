@@ -1,3 +1,5 @@
+/* style.css */
+/* Los colores ya están actualizados con el gradiente negro/morado como pediste */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
 *{
     font-family: 'Poppins',cursive;
@@ -10,7 +12,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background: linear-gradient(to bottom, #000000, #301934); /* Gradiente negro a morado */
     /* padding-top: -30; */
 }
 
@@ -46,7 +48,7 @@ body{
 @keyframes glow{
     0%, 100%{
         color: #fff;
-        text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
+        text-shadow: 0 0 12px #9370db, 0 0 50px #9370db, 0 0 100px #9370db; /* Glow morado */
     }
     10%, 90%{
         color: #111;
@@ -68,10 +70,21 @@ body{
 .greetings > span:nth-child(6){
     animation-delay: 1s;
 }
+.greetings > span:nth-child(7){
+    animation-delay: 1.2s;
+}
+.greetings > span:nth-child(8){
+    animation-delay: 1.4s;
+}
+.greetings > span:nth-child(9){
+    animation-delay: 1.6s;
+}
 
 .description{
     font-size: 1.5rem;
     margin-bottom: 20px;
+    text-align: center;
+    max-width: 80%;
 }
 
 .button a{
