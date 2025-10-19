@@ -1,4 +1,3 @@
-// anim.js (versión completa, sin cambios mayores)
 var audio = document.querySelector("audio");
 var lyrics = document.querySelector("#lyrics");
 
