@@ -22,38 +22,69 @@ body {
   background: linear-gradient(to bottom, var(--dark-color), var(--purple-color));
   overflow: hidden;
   perspective: 1000px;
+  position: relative;
 }
 
 #lyrics {
-  font-size: 28px;
+  font-size: 24px;
   font-family: 'Poppins', sans-serif;
   color: #ffffff;
   position: absolute;
-  top: 60%; /* Movido más abajo para evitar superposición con título y flores */
+  bottom: 25%; /* Posicionado en la parte inferior */
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 20; /* Mayor z-index para estar sobre todo */
+  transform: translate(-50%, 0); /* Ajustado para bottom */
+  z-index: 20;
   font-weight: 500;
   letter-spacing: 1px;
   text-align: center;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(147, 112, 219, 0.5); /* Mejor sombra para legibilidad */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(147, 112, 219, 0.8); /* Glow más intenso */
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  max-width: 85%;
-  line-height: 1.5;
-  background: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente para mejor lectura */
-  padding: 15px 20px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+  max-width: 90%;
+  max-height: 25vh; /* Altura limitada para no invadir todo */
+  overflow-y: auto; /* Scroll si la letra es larga */
+  padding: 20px 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.4); /* Fondo más opaco para legibilidad */
+  border: 1px solid rgba(186, 85, 211, 0.3); /* Borde sutil púrpura */
+  animation: lyricsGlow 3s ease-in-out infinite alternate; /* Animación de glow suave */
+}
+
+#lyrics::-webkit-scrollbar {
+  width: 8px;
+}
+
+#lyrics::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+#lyrics::-webkit-scrollbar-thumb {
+  background: var(--flower-purple);
+  border-radius: 10px;
+}
+
+#lyrics:hover {
+  transform: translate(-50%, -5px); /* Efecto lift al hover */
+}
+
+@keyframes lyricsGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(186, 85, 211, 0.8), 0 0 50px rgba(147, 112, 219, 0.6);
+  }
 }
 
 @media only screen and (max-width: 600px) {
   #lyrics {
-      font-size: 18px;
-      letter-spacing: 0.5px;
+      font-size: 16px;
+      bottom: 20%;
+      max-height: 30vh;
+      padding: 15px 20px;
       max-width: 95%;
-      top: 70%; /* Ajuste para móvil */
-      padding: 10px 15px;
   }
 }
 
@@ -61,7 +92,7 @@ body {
   font-family: 'Poppins', sans-serif;
   color: var(--light-purple);
   position: absolute;
-  top: 5%; /* Subido un poco para más espacio */
+  bottom: 55%; /* Justo arriba de las lyrics, en la parte inferior */
   left: 50%;
   transform: translateX(-50%);
   font-weight: 600;
@@ -69,23 +100,55 @@ body {
   opacity: 0;
   animation: fadeIn 3s ease-in-out forwards;
   text-align: center;
-  text-shadow: 2px 2px 8px var(--dark-purple), 0 0 20px rgba(186, 85, 211, 0.3); /* Sombra más bonita */
-  line-height: 1.6;
+  text-shadow: 2px 2px 8px var(--dark-purple), 0 0 25px rgba(186, 85, 211, 0.6); /* Glow más bonito */
+  line-height: 1.5;
   max-width: 90%;
-  padding: 20px;
-  z-index: 15; /* Sobre flores pero bajo lyrics */
-  background: rgba(0, 0, 0, 0.2); /* Fondo sutil para legibilidad */
+  max-height: 30vh; /* Altura limitada */
+  overflow-y: auto; /* Scroll para mensaje largo */
+  padding: 25px 30px;
+  z-index: 15;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(147, 112, 219, 0.4);
+  animation: titleGlow 4s ease-in-out infinite alternate; /* Animación de glow */
+}
+
+.titulo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.titulo::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  backdrop-filter: blur(5px);
+}
+
+.titulo::-webkit-scrollbar-thumb {
+  background: var(--light-purple);
+  border-radius: 10px;
+}
+
+.titulo:hover {
+  transform: translateX(-50%) translateY(-5px);
+}
+
+@keyframes titleGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(186, 85, 211, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(186, 85, 211, 0.7), 0 0 60px rgba(147, 112, 219, 0.5);
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .titulo {
-      font-size: 1.1rem;
-      top: 2%;
-      padding: 15px;
+      font-size: 1rem;
+      bottom: 50%;
+      padding: 20px 25px;
+      max-height: 35vh;
       max-width: 95%;
-      line-height: 1.4;
+      line-height: 1.3;
   }
 }
 
@@ -158,14 +221,14 @@ body {
 .flowers {
   position: relative;
   transform: scale(0.9);
-  z-index: 5; /* Bajo los mensajes */
-  margin-bottom: 10vh; /* Espacio extra en la parte inferior */
+  z-index: 5;
+  margin-bottom: 5vh; /* Reducido para dar más espacio arriba a mensajes */
 }
 
 @media only screen and (max-width: 600px) {
   .flowers {
       transform: scale(1.0);
-      margin-bottom: 5vh;
+      margin-bottom: 2vh;
   }
 }
 
